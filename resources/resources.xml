@@ -1,0 +1,13 @@
+<resources>
+  <settings>
+
+      <setting propertyKey="@Properties.start_station" title="@Strings.end_station">
+          <settingConfig type="alphaNumeric" required="true" />
+      </setting>
+
+      <setting propertyKey="@Properties.end_station" title="@Strings.start_station">
+          <settingConfig type="alphaNumeric" required="true" />
+      </setting>
+
+  </settings>
+</resources>
