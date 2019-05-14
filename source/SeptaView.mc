@@ -44,7 +44,7 @@ class SeptaView extends WatchUi.View {
         dc.drawText(85, 1, Graphics.FONT_XTINY,  stationText, Graphics.TEXT_JUSTIFY_LEFT);
 
 
-      dc.drawText(dc.getWidth()/2, 100, Graphics.FONT_MEDIUM, mMessage, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+      dc.drawText(dc.getWidth()/2, 50, Graphics.FONT_MEDIUM, mMessage, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     // Called when this View is removed from the screen. Save the
@@ -79,6 +79,10 @@ class SeptaView extends WatchUi.View {
               //var load = entry["TrainingLoad"]; // ...
               //var type = entry["TypeId"];       // ...
               mMessage += Lang.format("$1$ ($2$)", [depart, delayed]) + "\n";
+          }
+          
+          if (data.size() == 0) {
+          mMessage = "No trips found.";
           }
         }
 

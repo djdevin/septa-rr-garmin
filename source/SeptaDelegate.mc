@@ -13,6 +13,7 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
     var notify;
     var start_station;
     var end_station;
+    var num_trips;
     hidden var mView;
     hidden var delegate;
 
@@ -23,14 +24,12 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onSelect() {
+    // @todo: geolocate closest start or end
       var tmp = start_station;
       start_station = end_station;
       end_station = tmp;
 
-      Application.getApp().setProperty("start_station", start_station);
-      Application.getApp().setProperty("end_station", end_station);
-
-
+   
         makeRequest();
         return true;
     }
@@ -44,10 +43,10 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
       }
 
         notify.invoke("Getting trips...", start_station, end_station);
-
+		var url = "http://www3.septa.org/hackathon/NextToArrive/?req1=" + start_station + "&req2=" + end_station + "&req3=" + num_trips;
+		url = SeptaUtil.stringReplace(url, " ", "+");
         Communications.makeWebRequest(
-
-            "http://www3.septa.org/hackathon/NextToArrive/" + start_station + "/" + end_station + "/" + 3,
+            url,
             {
             },
             {
@@ -70,7 +69,7 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
       // Get an Object Store value
       start_station = Application.getApp().getProperty("start_station");
       end_station = Application.getApp().getProperty("end_station");
-
+		num_trips = Application.getApp().getProperty("num_trips");
       }
 
         makeRequest();

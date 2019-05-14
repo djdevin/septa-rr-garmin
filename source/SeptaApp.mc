@@ -28,6 +28,6 @@ class SeptaApp extends Application.AppBase {
         mView = new SeptaView();
         return [mView, new SeptaDelegate(mView.method(:onReceive))];
     }
-    
+   
     
 }
