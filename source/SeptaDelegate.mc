@@ -7,33 +7,36 @@
 using Toybox.Communications;
 using Toybox.WatchUi;
 using Toybox.Application;
+using Toybox.System;
 
-class WebRequestDelegate extends WatchUi.BehaviorDelegate {
+class SeptaDelegate extends WatchUi.BehaviorDelegate {
     var notify;
     var start_station;
     var end_station;
+    hidden var mView;
+    hidden var delegate;
 
     // Handle menu button press
     function onMenu() {
-        makeRequest();
+
         return true;
     }
 
     function onSelect() {
+      var tmp = start_station;
+      start_station = end_station;
+      end_station = tmp;
+
+      Application.getApp().setProperty("start_station", start_station);
+      Application.getApp().setProperty("end_station", end_station);
+
+
         makeRequest();
         return true;
     }
 
     function makeRequest() {
-      if ( Toybox.Application has :Storage ) {
-    // use Application.Storage and Application.Properties methods
 
-} else {
-    // use Application.AppBase methods
-    // Get an Object Store value
-    start_station = Application.getApp().getProperty("start_station");
-    end_station = Application.getApp().getProperty("end_station");
-}
 
 
       if (start_station == "" || end_station == "") {
@@ -42,9 +45,9 @@ class WebRequestDelegate extends WatchUi.BehaviorDelegate {
 
         notify.invoke("Getting trips...", start_station, end_station);
 
-        Communications.makeWebRequest(\
+        Communications.makeWebRequest(
 
-            "http://www3.septa.org/hackathon/NextToArrive/" + start_station + "/" + end_station,
+            "http://www3.septa.org/hackathon/NextToArrive/" + start_station + "/" + end_station + "/" + 3,
             {
             },
             {
@@ -58,6 +61,19 @@ class WebRequestDelegate extends WatchUi.BehaviorDelegate {
     function initialize(handler) {
         WatchUi.BehaviorDelegate.initialize();
         notify = handler;
+
+        if ( Toybox.Application has :Storage ) {
+      // use Application.Storage and Application.Properties methods
+
+      } else {
+      // use Application.AppBase methods
+      // Get an Object Store value
+      start_station = Application.getApp().getProperty("start_station");
+      end_station = Application.getApp().getProperty("end_station");
+
+      }
+
+        makeRequest();
     }
 
     // Receive the data from the web request

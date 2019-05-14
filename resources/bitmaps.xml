@@ -1,3 +1,6 @@
 <resources>
     <bitmap id="LauncherIcon" filename="images/icon.png" />
+    <bitmap id="septa_logo_200" filename="images/septa-200.png" dithering="none"/>
+    <bitmap id="septa_logo_100" filename="images/septa-100.png" dithering="none"/>
+    <bitmap id="septa_logo_50" filename="images/septa-50.png" dithering="none"/>
 </resources>

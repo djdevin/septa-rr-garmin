@@ -4,13 +4,19 @@
 // Application Developer Agreement.
 //
 
-using Toybox.Application;
 
-class WebRequestApp extends Application.AppBase {
+using Toybox.Application;
+using Toybox.System;
+
+class SeptaApp extends Application.AppBase {
     hidden var mView;
 
     function initialize() {
         Application.AppBase.initialize();
+
+        //Initliaze fake settings.
+        Application.getApp().setProperty("start_station", "Suburban%20Station");
+        Application.getApp().setProperty("end_station", "Swarthmore");
     }
 
     // onStart() is called on application start up
@@ -23,7 +29,7 @@ class WebRequestApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() {
-        mView = new WebRequestView();
-        return [mView, new WebRequestDelegate(mView.method(:onReceive))];
+        mView = new SeptaView();
+        return [mView, new SeptaDelegate(mView.method(:onReceive))];
     }
 }

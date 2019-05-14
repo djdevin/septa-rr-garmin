@@ -9,5 +9,9 @@
           <settingConfig type="alphaNumeric" required="true" />
       </setting>
 
+      <setting propertyKey="@Properties.num_trips" title="@Strings.num_trips">
+          <settingConfig type="numeric" required="true" />
+      </setting>
+
   </settings>
 </resources>
