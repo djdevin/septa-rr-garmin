@@ -1,0 +1,34 @@
+<resources>
+<string id="start_station">Start station (exact name)</string>
+<string id="end_station">End station (exact name)</string>
+	<string id="num_trips">Number of trips to show</string>
+
+	<properties>
+	    <property id="num_trips" type="number">3</property>
+	    <property id="start_station" type="string">Suburban Station</property>
+	    <property id="end_station" type="string">30th Street Station</property>
+	</properties>
+
+	<settings>
+		<setting propertyKey="@Properties.num_trips" title="@Strings.num_trips">
+			<settingConfig type="numeric" />
+		</setting>
+		<setting propertyKey="@Properties.start_station" title="@Strings.start_station">
+			<settingConfig type="alphaNumeric" />
+		</setting>
+		<setting propertyKey="@Properties.end_station" title="@Strings.end_station">
+			<settingConfig type="alphaNumeric" />
+		</setting>
+		
+		<!--  
+		<setting propertyKey="@Properties.start_station" title="@Strings.start_station"> 
+		 <settingConfig type="list">
+            <listEntry value="Suburban Station">Suburban Station</listEntry>
+            <listEntry value="30th%20Street%20Station">30th Street Station</listEntry>
+            <listEntry value="Jefferson%20Station">Jefferson Station</listEntry>
+         </settingConfig>
+       </setting>
+       -->
+		
+	</settings>
+</resources>

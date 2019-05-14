@@ -13,10 +13,6 @@ class SeptaApp extends Application.AppBase {
 
     function initialize() {
         Application.AppBase.initialize();
-
-        //Initliaze fake settings.
-        Application.getApp().setProperty("start_station", "Suburban%20Station");
-        Application.getApp().setProperty("end_station", "Swarthmore");
     }
 
     // onStart() is called on application start up
@@ -32,4 +28,6 @@ class SeptaApp extends Application.AppBase {
         mView = new SeptaView();
         return [mView, new SeptaDelegate(mView.method(:onReceive))];
     }
+    
+    
 }
