@@ -42,9 +42,18 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
 
       }
 
-        notify.invoke("Getting trips...", start_station, end_station);
+        //notify.invoke("Getting trips...", start_station, end_station);
+        var progressBar = new WatchUi.ProgressBar( "Getting trips...", null );
+        WatchUi.pushView( progressBar, new ProgressDelegate(), WatchUi.SLIDE_DOWN );
+        
+        
+        
 		var url = "http://www3.septa.org/hackathon/NextToArrive/?req1=" + start_station + "&req2=" + end_station + "&req3=" + num_trips;
 		url = SeptaUtil.stringReplace(url, " ", "+");
+
+// delay test
+//url = "http://httpbin.org/delay/5";
+
         Communications.makeWebRequest(
             url,
             {
@@ -77,11 +86,24 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
 
     // Receive the data from the web request
     function onReceive(responseCode, data) {
+        WatchUi.popView( WatchUi.SLIDE_UP );
         if (responseCode == 200) {
             notify.invoke("", start_station, end_station);
             notify.invoke(data, start_station, end_station);
         } else {
             notify.invoke("Couldn't get trips!", start_station, end_station);
         }
+    }
+}
+
+
+class ProgressDelegate extends WatchUi.BehaviorDelegate
+{
+    function initialize() {
+        BehaviorDelegate.initialize();
+    }
+
+    function onBack() {
+        return true;
     }
 }
