@@ -44,7 +44,7 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
 
         //notify.invoke("Getting trips...", start_station, end_station);
         var progressBar = new WatchUi.ProgressBar( "Getting trips...", null );
-        WatchUi.pushView( progressBar, new ProgressDelegate(), WatchUi.SLIDE_DOWN );
+        WatchUi.pushView( progressBar, new ProgressDelegate(), WatchUi.SLIDE_IMMEDIATE );
         
         
         
@@ -86,7 +86,7 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
 
     // Receive the data from the web request
     function onReceive(responseCode, data) {
-        WatchUi.popView( WatchUi.SLIDE_UP );
+        WatchUi.popView( WatchUi.SLIDE_IMMEDIATE );
         if (responseCode == 200) {
             notify.invoke("", start_station, end_station);
             notify.invoke(data, start_station, end_station);
