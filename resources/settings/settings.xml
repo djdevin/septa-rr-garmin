@@ -1,5 +1,4 @@
-<resources>
-  <settings>
+<settings>
 
       <setting propertyKey="@Properties.start_station" title="@Strings.end_station">
           <settingConfig type="alphaNumeric" required="true" />
@@ -14,4 +13,3 @@
       </setting>
 
   </settings>
-</resources>
