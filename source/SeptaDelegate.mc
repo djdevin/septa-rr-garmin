@@ -81,17 +81,20 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
 		num_trips = Application.getApp().getProperty("num_trips");
       }
 
-        makeRequest();
+
+        //makeRequest();
     }
 
     // Receive the data from the web request
     function onReceive(responseCode, data) {
         WatchUi.popView( WatchUi.SLIDE_IMMEDIATE );
         if (responseCode == 200) {
-            notify.invoke("", start_station, end_station);
+        Application.getApp().setProperty("start_station", start_station);
+        Application.getApp().setProperty("end_station", end_station);
+        Application.getApp().setProperty("last_trips", data);
             notify.invoke(data, start_station, end_station);
         } else {
-            notify.invoke("Couldn't get trips!", start_station, end_station);
+            notify.invoke("Couldn't get trips!");
         }
     }
 }

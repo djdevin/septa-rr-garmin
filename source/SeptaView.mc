@@ -29,21 +29,32 @@ class SeptaView extends WatchUi.View {
 
     // Restore the state of the app and prepare the view to be shown
     function onShow() {
+    var cache = Application.getApp().getProperty("last_trips");
+    var start_station = Application.getApp().getProperty("start_station");
+    var end_station = Application.getApp().getProperty("end_station");
+    if (cache instanceof Toybox.Lang.Array) {
+    if (cache.size() != 0) {
+    	System.println(cache);
+    	onReceive(cache, start_station, end_station);
+    }
+    }
+   
+    
     }
 
     // Update the view
     function onUpdate(dc) {
+    // Load a pretty icon and draw it.
      var image = WatchUi.loadResource( Rez.Drawables.septa_logo_50 );
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         dc.clear();
         dc.drawBitmap(30, 5, image);
 
+		// Show start and end statino text
         var stationText = Lang.format("$1$\n$2$\n", [mStart, mEnd]);
-
-
         dc.drawText(85, 1, Graphics.FONT_XTINY,  stationText, Graphics.TEXT_JUSTIFY_LEFT);
 
-
+		// Draw the rest of the message
       dc.drawText(dc.getWidth()/2, 50, Graphics.FONT_MEDIUM, mMessage, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
@@ -67,6 +78,7 @@ class SeptaView extends WatchUi.View {
             return;
         }
         else {
+        mMessage = "";
 
 
           // the outer element is an array, iterate over the elements.
@@ -76,8 +88,6 @@ class SeptaView extends WatchUi.View {
               // each entry in the array is a dictionary. lookup fields by name.
               var depart = entry.get("orig_departure_time");
               var delayed = entry.get("orig_delay");
-              //var load = entry["TrainingLoad"]; // ...
-              //var type = entry["TypeId"];       // ...
               mMessage += Lang.format("$1$ ($2$)", [depart, delayed]) + "\n";
           }
           
