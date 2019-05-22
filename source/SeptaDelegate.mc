@@ -19,18 +19,18 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
 
     // Handle menu button press
     function onMenu() {
-
-        return true;
-    }
-
-    function onSelect() {
-    // @todo: geolocate closest start or end
+ // @todo: geolocate closest start or end
       var tmp = start_station;
       start_station = end_station;
       end_station = tmp;
 
-   
-        makeRequest();
+   makeRequest();
+        
+        return true;
+    }
+
+    function onSelect() {
+   makeRequest();
         return true;
     }
 
