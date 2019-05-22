@@ -1,33 +1,28 @@
-//
-// Copyright 2015-2016 by Garmin Ltd. or its subsidiaries.
-// Subject to Garmin SDK License Agreement and Wearables
-// Application Developer Agreement.
-//
-
+/**
+ * App controller.
+ */
 
 using Toybox.Application;
 using Toybox.System;
 
 class SeptaApp extends Application.AppBase {
-    hidden var mView;
+  hidden var mView;
 
-    function initialize() {
-        Application.AppBase.initialize();
-    }
+  function initialize() {
+    Application.AppBase.initialize();
+  }
 
-    // onStart() is called on application start up
-    function onStart(state) {
-    }
+  // onStart() is called on application start up
+  function onStart(state) {
+  }
 
-    // onStop() is called when your application is exiting
-    function onStop(state) {
-    }
+  // onStop() is called when your application is exiting
+  function onStop(state) {
+  }
 
-    // Return the initial view of your application here
-    function getInitialView() {
-        mView = new SeptaView();
-        return [mView, new SeptaDelegate(mView.method(:onReceive))];
-    }
-   
-    
+  // Return the initial view of your application here
+  function getInitialView() {
+    mView = new SeptaView();
+    return [mView, new SeptaDelegate(mView.method( : onReceive))];
+  }
 }
