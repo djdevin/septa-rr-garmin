@@ -80,9 +80,14 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
       end_station = Application.getApp().getProperty("end_station");
 		num_trips = Application.getApp().getProperty("num_trips");
       }
+var cache = Application.getApp().getProperty("last_trips");
+if (cache instanceof Toybox.Lang.Array) {
+    // Do nothing
+    }
+    else {
 
-
-        //makeRequest();
+        makeRequest();
+        }
     }
 
     // Receive the data from the web request
