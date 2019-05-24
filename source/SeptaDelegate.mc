@@ -62,7 +62,7 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
     WatchUi.BehaviorDelegate.initialize();
     notify = handler;
 
-    if ( Toybox.Application has :Storage ) {
+    if ( false && Toybox.Application has :Storage ) {
       // @todo for CIQ >= 2.4
       // use Application.Storage and Application.Properties methods
 
@@ -96,7 +96,7 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
       // Invoke the display.
       notify.invoke(data, start_station, end_station);
     } else {
-      notify.invoke("Couldn't get trips!");
+      notify.invoke("Couldn't get trips!", start_station, end_station);
     }
   }
 }

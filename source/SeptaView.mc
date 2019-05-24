@@ -36,14 +36,14 @@ class SeptaView extends WatchUi.View {
   // Update the widget view.
   function onUpdate(dc) {
     // Load a pretty icon and draw it.
-    var image = WatchUi.loadResource( Rez.Drawables.septa_logo_50 );
+    var image = WatchUi.loadResource( Rez.Drawables.septa_logo_32 );
     dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
     dc.clear();
-    dc.drawBitmap(30, 5, image);
+    dc.drawBitmap(35, 5, image);
 
     // Show start and end station indicator.
     var stationText = Lang.format("$1$\n$2$\n", [mStart, mEnd]);
-    dc.drawText(85, 1, Graphics.FONT_XTINY,  stationText, Graphics.TEXT_JUSTIFY_LEFT);
+    dc.drawText(75, 1, Graphics.FONT_XTINY,  stationText, Graphics.TEXT_JUSTIFY_LEFT);
 
     // Draw the rest of the message (trips and times).
     dc.drawText(dc.getWidth()/2, 50, Graphics.FONT_MEDIUM, mMessage, Graphics.TEXT_JUSTIFY_CENTER);
