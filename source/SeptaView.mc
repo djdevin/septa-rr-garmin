@@ -35,18 +35,23 @@ class SeptaView extends WatchUi.View {
 
   // Update the widget view.
   function onUpdate(dc) {
+    var offset = 0;
+    if (dc.getHeight() == 240) {
+      offset = 20;
+    }
+
     // Load a pretty icon and draw it.
     var image = WatchUi.loadResource( Rez.Drawables.septa_logo_32 );
     dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
     dc.clear();
-    dc.drawBitmap(35, 5, image);
+    dc.drawBitmap(dc.getWidth()/2 - 75, 5 + offset, image);
 
     // Show start and end station indicator.
-    var stationText = Lang.format("$1$\n$2$\n", [mStart, mEnd]);
-    dc.drawText(75, 1, Graphics.FONT_XTINY,  stationText, Graphics.TEXT_JUSTIFY_LEFT);
+    var stationText = Lang.format("$1$\nto $2$\n", [mStart, mEnd]);
+    dc.drawText(dc.getWidth()/2 - 32, 1 + offset, Graphics.FONT_XTINY,  stationText, Graphics.TEXT_JUSTIFY_LEFT);
 
     // Draw the rest of the message (trips and times).
-    dc.drawText(dc.getWidth()/2, 50, Graphics.FONT_MEDIUM, mMessage, Graphics.TEXT_JUSTIFY_CENTER);
+    dc.drawText(dc.getWidth()/2, 50 + offset, Graphics.FONT_MEDIUM, mMessage, Graphics.TEXT_JUSTIFY_CENTER);
   }
 
   // Supposed to save the state here.
@@ -55,8 +60,10 @@ class SeptaView extends WatchUi.View {
 
   // Called on a view update. Data received from invoke().
   function onReceive(data, start_station, end_station) {
-    mStart = start_station;
-    mEnd = end_station;
+    mStart = SeptaUtil.stringReplace(start_station, " Station", "");
+    mEnd = SeptaUtil.stringReplace(end_station, " Station", "");
+    //mStart = start_station;
+    //mEnd = end_station;
     if (data instanceof Lang.String) {
       if (data == "") {
         mMessage = "";
