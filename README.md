@@ -1,11 +1,21 @@
 # septa-rr-garmin
 SEPTA RR widget for Garmin watches
 
-On the Widget configuration inside of the Connect IQ app, you must enter the full station name. This is because the Next-to-arrive API takes in a station name and not a station ID.
+A widget designed for commuters that shows upcoming SEPTA Regional Rail trips and delays between a configured start and end station.
+
+Hold up/press menu/long tap to switch the start and end. Press select/tap to refresh the trips.
 
 Unfortunately the Connect IQ settings interface does not allow for non-numeric key-value pairs so I can't add a select list of all stations.
 
-The station names to use are listed in https://github.com/djdevin/septa-rr-garmin/blob/master/stations.txt
+For now, you must type in the exact station name in the configuration. The list of stations to use is on https://github.com/djdevin/septa-rr-garmin/blob/master/stations.txt
+
+Uses the SEPTA Next to Arrive JSON API: http://www3.septa.org/hackathon/
+
+Roadmap:
+- automatic station switch based on GPS
+- configurable refresh time
+- better art
+- more devices
 
 ### Coding style
 
