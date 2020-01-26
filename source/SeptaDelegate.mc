@@ -47,7 +47,7 @@ class SeptaDelegate extends WatchUi.BehaviorDelegate {
     var progressBar = new WatchUi.ProgressBar( "Getting trips...", null );
     WatchUi.pushView( progressBar, new ProgressDelegate(), WatchUi.SLIDE_IMMEDIATE );
 
-    var url = "http://www3.septa.org/hackathon/NextToArrive/?req1=" + start_station + "&req2=" + end_station + "&req3=" + num_trips;
+    var url = "https://www3.septa.org/hackathon/NextToArrive/?req1=" + start_station + "&req2=" + end_station + "&req3=" + num_trips;
     url = SeptaUtil.stringReplace(url, " ", "+");
 
     // URL for testing a 5 second delay.
